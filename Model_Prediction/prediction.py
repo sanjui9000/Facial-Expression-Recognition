@@ -1,5 +1,17 @@
-# some_file.py
 import sys
+from gtts import gTTS
+import os
+from pygame import mixer
+from pygame import time
+
+# Tensorflow specific fix - CUDNN Error
+import tensorflow as tf
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+
+os.environ['KERAS_BACKEND']='tensorflow'
+
 sys.path.append('C:/Users/Sai/Desktop/Facial_Expression_Recognition/CNN_Model')
 sys.path.append('C:/Users/Sai/Desktop/Facial_Expression_Recognition/Model_Training')
 
@@ -26,7 +38,18 @@ def main():
     print ('Image Prediction Mode')
     img = preprocessing(cv2.imread('C:/Users/Sai/Desktop/Facial_Expression_Recognition/Model_Prediction/Images/angry.jpg'))
     results = predict_emotion(img)
-    # predict_classes will enable us to select most probable class
+    tts = gTTS(text='Expression is ... {}'.format(emotion[np.argmax(results)]), lang='en', slow=False)
+    tts.save("Expressions.mp3")
+
+    mixer.init()
+    mixer.music.load('Expressions.mp3')
+    mixer.music.play()
+    while mixer.music.get_busy():
+        time.Clock().tick(30)
+    else:
+        mixer.music.play(-1)
+        mixer.quit()
+        os.remove('Expressions.mp3')
     print (emotion[np.argmax(results)])
 
 if __name__ == "__main__":
