@@ -14,6 +14,11 @@ In this project, Facial Expression Recognition system is implemented using CNN t
 our technique were carried out using kaggle dataset (fer2013.csv). The proposed method achieves competitive results when compared with other facial expression recognition methods – 91% of accuracy. It is fast to train, and it allows for real time
 facial expression recognition with standard computers.
 
+## Dataset
+All the experiments and evaluations were done on kaggle dataset (fer2013.csv).
+
+[Dataset Link](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
+
 ## Project Requirements
 - Software: Anaconda Navigator(Python), Spyder, Flask, CSS3, HTML5, Javascript
 - Operating System: Windows/Mac/Linux
